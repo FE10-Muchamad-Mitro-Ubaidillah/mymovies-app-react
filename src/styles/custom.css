@@ -1,0 +1,15 @@
+html{
+    height: 100%;
+}
+
+.img-card{
+    width: min(100%, 200px);
+    height: 250px;
+}
+
+
+.property{
+    /* background: #000000a2; */
+    width: min(100%, 200px);
+    height: 250px;
+}
