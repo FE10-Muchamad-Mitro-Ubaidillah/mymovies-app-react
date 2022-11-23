@@ -4,7 +4,7 @@ class MovieNavbar extends React.Component {
 
     render() {
         return (
-            <div className="navbar bg-gray-800 px-20 py-4">
+            <div className="navbar bg-gray-800 px-20 py-4 sticky top-0 z-10">
                 <div className="flex-1">
                     <a className="btn btn-ghost hover:bg-transparent text-white hover:text-white normal-case text-3xl">Movie&nbsp; <span className="text-red-600">77</span></a>
                     <ul className="flex text-white">

@@ -6,7 +6,7 @@ class App extends React.Component {
     render() {
 
         return (
-            <div className="movie-app bg-slate-100">
+            <div className="movie-app bg-slate-100 relative">
                 <HomePage />
             </div>
         )
