@@ -9,6 +9,7 @@ class MoviesListPlaying extends React.Component {
                     this.props.movies.map((movie) => (
                         <div className="w-auto relative">
                             <MovieItemContent
+                                key={movie.id}
                                 {...movie}
                             />
                         </div>

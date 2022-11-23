@@ -9,6 +9,7 @@ class MoviesList extends React.Component {
                     this.props.movies.map((movie) => (
                         <div className="flex-none relative first:mr-3 last:ml-3 mx-3 mb-2">
                             <MovieItemContent
+                                key={movie.id}
                                 {...movie}
                             />
                         </div>

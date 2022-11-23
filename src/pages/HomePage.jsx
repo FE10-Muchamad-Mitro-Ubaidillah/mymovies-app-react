@@ -1,21 +1,39 @@
 import React from "react";
-import {getMoviesData} from '../utils/index';
+import api from "../services/api";
 import MovieCarouselList from "../components/MovieCarouselList";
-import MoviesListPlaying from "../components/MovieListPlaying";
-import MovieNavbar from "../components/MovieNavbar";
 import MoviesList from "../components/MoviesList";
+import MovieNavbar from "../components/MovieNavbar";
+import MoviesListPlaying from "../components/MovieListPlaying";
 
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            movies: getMoviesData(),
+            movies: [],
         }
     }
 
-    render() {
 
+    async getNowPlayingMovies() {
+        await api.getNowPlayingMovies("now_playing")
+            .then(res => {
+                this.setState({
+                    movies: res.data.results
+                })
+            })
+            .catch(error => {
+                alert(error)
+            })
+    }
+
+    componentDidMount(){
+        this.getNowPlayingMovies();
+    }
+
+    render() {
+        const result = this.state.movies;
+        console.log(result)
         return (
             <>
                 <MovieNavbar />
