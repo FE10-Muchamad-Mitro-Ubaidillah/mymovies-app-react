@@ -3,14 +3,14 @@ import api from "../services/api";
 import MovieNavbar from "../components/MovieNavbar";
 import MovieItemContent from "../components/MovieItemContent";
 import MovieHero from "../components/MovieHero";
+import { AiOutlineLoading } from 'react-icons/ai';
+import MovieFooter from "../components/MovieFooter";
 
 const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     let slide_index = 1;
     let next = 2;
-
-    // console.log(carousel);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,18 +28,26 @@ const HomePage = () => {
 
 
     return (
-        <div className="bg-gray-800 text-white">
-            {loading && <div>loading</div>}
+        <div className="bg-gray-800 text-white h-full w-full">
+            <MovieNavbar />
+            {loading && (
+                <div className="relative h-screen w-screen bg-gray-800">
+                    <div className="absolute top-60 left-1/2 text-center">
+                        <AiOutlineLoading className="animate-spin w-20 h-20" />
+                        <p className="text-xl">Loading...</p>
+                    </div>
+                </div>
+            )
+            }
             {!loading && (
                 <>
-                    <MovieNavbar />
                     <div className="carousel w-full bg-gray-700">
                         {
                             movies.map(movie => (
                                 <div className="carousel-item relative w-full" key={movie.id} id={slide_index++}>
                                     <MovieHero {...movie} />
                                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                        <a href={`#${next-2}`} className="btn btn-circle text-base">❮</a>
+                                        <a href={`#${next - 2}`} className="btn btn-circle text-base">❮</a>
                                         <a href={`#${next++}`} className="btn btn-circle text-base">❯</a>
                                     </div>
                                 </div>
@@ -50,7 +58,7 @@ const HomePage = () => {
                         <div className="my-10">
                             <h2 className="text-2xl mb-5 font-bold">Favorite Movies</h2>
                             <div className="relative overflow-auto w-auto">
-                                <div className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-300 p-5">
+                                <div className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-600 p-5">
                                     {movies.map(movie => (
                                         <div className="flex-none relative first:mr-3 last:ml-3 mx-3" key={movie.id}>
                                             <MovieItemContent {...movie} />
@@ -75,6 +83,7 @@ const HomePage = () => {
                 </>
             )
             }
+            <MovieFooter />
         </div >
     )
 }
