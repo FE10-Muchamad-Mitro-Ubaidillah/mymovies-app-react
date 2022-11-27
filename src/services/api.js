@@ -9,6 +9,16 @@ export default {
     getNowPlayingMovies:(keyword) =>
     instance({
         method: `GET`,
-        url: `${keyword}?api_key=4cee0d1f3d660d8d420266c93e1f1e5d`
+        url: `${keyword}?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&page=1`,
+    }),
+    getMovie:(id) =>
+    instance({
+        method: `GET`,
+        url: `${id}?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`
+    }),
+    getSimilarMovies:(id) => 
+    instance({
+        method: `GET`,
+        url: `${id}/similar?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&page=1`
     })
 }
