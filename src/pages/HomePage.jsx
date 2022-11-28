@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import api from "../services/api";
-import MovieNavbar from "../components/MovieNavbar";
 import MovieItemContent from "../components/MovieItemContent";
 import MovieHero from "../components/MovieHero";
 import { AiOutlineLoading } from 'react-icons/ai';
-import MovieFooter from "../components/MovieFooter";
+import LocaleContext from "../context/context";
 
 const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const {theme} = useContext(LocaleContext);
+
     let slide_index = 1;
     let next = 2;
 
@@ -28,8 +29,7 @@ const HomePage = () => {
 
 
     return (
-        <div className="bg-gray-800 text-white h-full w-full">
-            <MovieNavbar />
+        <>
             {loading && (
                 <div className="relative h-screen w-screen bg-gray-800">
                     <div className="absolute top-60 left-1/2 text-center">
@@ -41,7 +41,7 @@ const HomePage = () => {
             }
             {!loading && (
                 <>
-                    <div className="carousel w-full bg-gray-700">
+                    <div className={`carousel w-full ${theme === `dark` ? `bg-gray-700` : `bg-slate-200` }`}>
                         {
                             movies.map(movie => (
                                 <div className="carousel-item relative w-full" key={movie.id} id={slide_index++}>
@@ -56,9 +56,9 @@ const HomePage = () => {
                     </div>
                     <div className="p-10 mt-10">
                         <div className="my-10">
-                            <h2 className="text-2xl mb-5 font-bold">Favorite Movies</h2>
+                            <h2 className={`text-2xl mb-5 font-bold ${theme === `dark` ? `text-gray-200` : `text-gray-800` }`}>Favorite Movies</h2>
                             <div className="relative overflow-auto w-auto">
-                                <div className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-600 p-5">
+                                <div className={`flex overflow-x-auto scrollbar-thin ${theme === `dark` ? `scrollbar-thumb-gray-700 scrollbar-track-gray-600` : `scrollbar-thumb-gray-500 scrollbar-track-gray-600` } p-5`}>
                                     {movies.map(movie => (
                                         <div className="flex-none relative first:mr-3 last:ml-3 mx-3" key={movie.id}>
                                             <MovieItemContent {...movie} />
@@ -68,7 +68,7 @@ const HomePage = () => {
                             </div>
                         </div>
                         <div className="my-10">
-                            <h2 className="text-2xl mb-5 font-bold">Now Playing</h2>
+                            <h2 className={`text-2xl mb-5 font-bold ${theme === `dark` ? `text-gray-200` : `text-gray-800` }`}>Now Playing</h2>
                             <div className="relative w-auto">
                                 <div className="grid grid-cols-7 gap-6">
                                     {movies.map(movie => (
@@ -83,8 +83,7 @@ const HomePage = () => {
                 </>
             )
             }
-            <MovieFooter />
-        </div >
+        </ >
     )
 }
 

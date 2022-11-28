@@ -37,8 +37,7 @@ const DetailPage = () => {
     }, []);
 
     return (
-        <div className="bg-gray-800 h-full w-full text-white">
-            <MovieNavbar />
+        <>   
             {loading && (
                 <div className="relative h-screen">
                     <div className="absolute top-60 left-1/2 text-center">
@@ -65,8 +64,7 @@ const DetailPage = () => {
                     </div>
                 </>
             )}
-            <MovieFooter />
-        </div>
+        </>
     )
 }
 
