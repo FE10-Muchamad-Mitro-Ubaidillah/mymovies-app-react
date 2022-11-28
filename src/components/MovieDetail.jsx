@@ -26,7 +26,7 @@ const MovieDetail = ({ poster_path, title, overview, genres, vote_average }) => 
 
                     <p className="">{overview}</p>
                 </div>
-                <button className="btn border-white border-2 bg-transparent text-white hover:bg-white hover:text-black mr-4">+ Add to Favorite</button>
+                <button className={`btn border-white border-2 bg-transparent ${theme === `dark` ? `text-white hover:bg-white hover:text-black` : `text-gray-800 border-gray-800 hover:bg-gray-800 hover:text-white` } mr-4`}>+ Add to Favorite</button>
                 <button className="btn bg-red-600 border-none hover:bg-red-700">Play Film</button>
             </div>
         </div>
