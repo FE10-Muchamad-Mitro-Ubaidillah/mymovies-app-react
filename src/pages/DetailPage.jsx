@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../services/api";
 import MovieDetail from "../components/MovieDetail";
-import MovieNavbar from "../components/MovieNavbar";
 import MovieItemContent from "../components/MovieItemContent";
 import {AiOutlineLoading} from "react-icons/ai";
-import MovieFooter from "../components/MovieFooter";
 
 const DetailPage = () => {
     const { id } = useParams();
@@ -20,16 +18,15 @@ const DetailPage = () => {
                     setMovie(response.data)
                 })
                 .catch(error => {
-                    console.log(error)
+                    alert(error)
                 })
 
             await api.getSimilarMovies(id)
                 .then(response => {
-                    console.log(response.data.results)
                     setSimilarMovies(response.data.results)
                 })
                 .catch(error => {
-                    console.log(error)
+                    alert(error)
                 })
             setLoading(false);
         }

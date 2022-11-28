@@ -20,7 +20,7 @@ const HomePage = () => {
                     setMovies(response.data.results);
                 })
                 .catch(error => {
-                    console.log(error);
+                    alert(error);
                 })
             setLoading(false);
         }
