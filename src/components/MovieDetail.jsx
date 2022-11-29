@@ -18,7 +18,7 @@ const MovieDetail = ({ poster_path, title, overview, genres, vote_average }) => 
                     </div>
 
                     <div className="rating">
-                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked disabled />
                         <span>{vote_average.toFixed(1)} / 10</span>
                     </div>
 

@@ -7,6 +7,7 @@ import MovieNavbar from "./components/MovieNavbar";
 import MovieFooter from "./components/MovieFooter";
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from "react-redux";
+import FavoritePage from "./pages/FavoritePage";
 
 import "./assets/custom.css";
 import { changeTheme } from "./features/themeSlice";
@@ -37,6 +38,7 @@ const App = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/detail/:id" element={<DetailPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/favorite" element={<FavoritePage />} />
             </Routes>
             <MovieFooter />
         </div>

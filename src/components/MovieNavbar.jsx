@@ -7,7 +7,7 @@ const MovieNavbar = ({ onLogout, name, cookie, toggleTheme }) => {
     const theme = useSelector((state) => state.theme)
 
     return (
-        <div className={`navbar ${theme === `dark` ? `bg-gray-800`: `bg-gray-100` } sticky top-0 z-10 py-4 px-16`}>
+        <div className={`navbar ${theme === `dark` ? `bg-gray-700`: `bg-gray-100` } sticky top-0 z-10 py-4 px-16`}>
             <div className="flex-none">
                 <Link to="/" className={`font-bold text-3xl ${theme === `dark` ? `text-white`: `text-gray-800`}`}>Movie <span className="text-red-700">77</span></Link>
             </div>

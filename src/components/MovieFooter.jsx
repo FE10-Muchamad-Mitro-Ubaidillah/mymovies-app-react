@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const MovieFooter = () => {
-    const theme = useSelector((state) => state.value);
+    const theme = useSelector((state) => state.theme);
     
     return (
         <div className={`w-full h-full`}>
