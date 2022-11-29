@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../services/api";
 import MovieItemContent from "../components/MovieItemContent";
 import MovieHero from "../components/MovieHero";
 import { AiOutlineLoading } from 'react-icons/ai';
-import LocaleContext from "../context/context";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
-    const {theme} = useContext(LocaleContext);
+    const theme = useSelector((state) => state.theme);
 
     let slide_index = 1;
     let next = 2;

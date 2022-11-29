@@ -36,7 +36,7 @@ const DetailPage = () => {
     return (
         <>   
             {loading && (
-                <div className="relative h-screen">
+                <div className="relative h-screen w-screen">
                     <div className="absolute top-60 left-1/2 text-center">
                         <AiOutlineLoading className="animate-spin w-20 h-20" />
                         <p className="text-xl">Loading...</p>

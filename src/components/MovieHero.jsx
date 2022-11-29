@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import LocaleContext from "../context/context";
 
 const MovieHero = ({ title, poster_path, overview, id }) => {
-    const {theme} = useContext(LocaleContext);
+    const theme = useSelector((state) => state.theme);
+
     return (
         <div className={`flex lg:flex-row items-center justify-evenly ${theme === `dark` ? `text-gray-200` : `text-gray-800` } lg:py-20 md:py-8`}>
             <div className="">

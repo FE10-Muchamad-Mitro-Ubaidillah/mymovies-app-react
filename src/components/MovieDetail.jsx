@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import LocaleContext from "../context/context";
+import React from "react";
+import { useSelector } from "react-redux";
 
 const MovieDetail = ({ poster_path, title, overview, genres, vote_average }) => {
-
-    const { theme } = useContext(LocaleContext);
-
+    const theme = useSelector((state) => state.theme);
     return (
         <div className={`flex flex-row flex-row-reverse items-center justify-evenly  ${theme === `dark` ? `text-white bg-gray-700` : `text-gray-800 bg-slate-200` } text-white md:py-8`}>
             <div className="">

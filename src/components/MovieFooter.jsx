@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
-import LocaleContext from "../context/context";
+import React from "react";
+import { useSelector } from "react-redux";
 
 const MovieFooter = () => {
-    const {theme} = useContext(LocaleContext);
+    const theme = useSelector((state) => state.value);
+    
     return (
         <div className={`w-full h-full`}>
             <footer className={`footer p-10 bg-neutral ${theme === `dark` ? `bg-gray-800` : `bg-gray-100` } flex justify-between px-20`}>

@@ -1,46 +1,45 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import DetailPage from "./pages/DetailPage";
 import HomePage from "./pages/HomePage";
-import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 import MovieNavbar from "./components/MovieNavbar";
 import MovieFooter from "./components/MovieFooter";
-import LocaleContext from "./context/context";
+import { useCookies } from 'react-cookie';
+import { useDispatch, useSelector } from "react-redux";
 
 import "./assets/custom.css";
+import { changeTheme } from "./features/themeSlice";
 
 const App = () => {
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+    const [cookie, removeCookie] = useCookies();
+    const theme = useSelector((state) => state.theme);
 
-    const toggleTheme = () => {
-        setTheme((prevTheme) => {
-            const newTheme = prevTheme === 'light' ? 'dark' : 'light';
-            localStorage.setItem('theme', newTheme);
-            return newTheme;
-        });
+    const dispatch = useDispatch();
+
+    const onLogoutHandler = (e) => {
+        removeCookie("name");
+        // navigate('/login');
+        e.preventDefault();
     }
 
-    const LocaleContextValue = useMemo(() => {
-        return {
-            toggleTheme,
-            theme
-        }
-    }, [theme]);
-    
     return (
-        <>
-            <LocaleContext.Provider value={LocaleContextValue}>
-                <div className={`${theme === `dark` ? `bg-gray-800` : `bg-white` } h-full w-full text-white`}>
-                    <MovieNavbar toggleTheme={() => toggleTheme()} />
-                    <Routes>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/detail/:id" element={<DetailPage />} />
-                        <Route path="/register" element={<RegisterPage />} />
-                    </Routes>
-                    <MovieFooter />
-                </div>
-            </LocaleContext.Provider>
-        </>
+        <div className={`${theme === `dark` ? `bg-gray-800` : `bg-white`} h-full w-full`}>
+            {cookie.name === 'undefined' ?
+                (
+                    <MovieNavbar toggleTheme={() => dispatch(changeTheme())} />
+                ) :
+                (
+                    <MovieNavbar toggleTheme={() => dispatch(changeTheme())} name={cookie.name} onLogout={() => onLogoutHandler()} cookie={cookie.name} />
+                )
+            }
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/detail/:id" element={<DetailPage />} />
+                <Route path="/login" element={<LoginPage />} />
+            </Routes>
+            <MovieFooter />
+        </div>
     )
 }
 
