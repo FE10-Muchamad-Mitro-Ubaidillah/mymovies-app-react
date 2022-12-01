@@ -9,7 +9,6 @@ const FavoritePage = () => {
     const stateFavorite = useSelector((state) => state.favorite);
     console.log(stateFavorite);
 
-
     return (
         <div className="my-16 mx-20">
             <h2 className={`text-2xl mb-5 font-bold ${theme === `dark` ? `text-gray-200` : `text-gray-800`}`}>Favorite Movies</h2>
@@ -20,7 +19,7 @@ const FavoritePage = () => {
                             {
                                 stateFavorite.map(item => (
                                     <div className="w-auto relative">
-                                        <MovieItemContent {...item} favorited={true} />
+                                        <MovieItemContent {...item} favorited={true}/>
                                     </div>
                                 ))
                             }
