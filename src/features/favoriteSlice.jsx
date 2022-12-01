@@ -16,7 +16,7 @@ export const favoriteSlice = createSlice({
                 state.push(newFavorite);
             } else {
                 let check = false;
-                state.map((item, key) => {
+                state.map((item) => {
                     if (item.id == action.payload.id) {
                         check = true;
                     }
