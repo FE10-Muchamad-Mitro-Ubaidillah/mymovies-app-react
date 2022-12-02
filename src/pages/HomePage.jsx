@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import api from "../services/api";
 import MovieItemContent from "../components/MovieItemContent";
 import MovieHero from "../components/MovieHero";
-import { AiOutlineLoading } from 'react-icons/ai';
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const HomePage = () => {
     const [movies, setMovies] = useState([]);
@@ -50,12 +50,7 @@ const HomePage = () => {
     return (
         <>
             {loading && (
-                <div className={`relative h-screen w-screen ${theme === 'dark' ? `bg-gray-800 text-white` : `bg-white text-black`} `}>
-                    <div className="absolute top-60 left-1/2 text-center">
-                        <AiOutlineLoading className="animate-spin w-20 h-20" />
-                        <p className="text-xl">Loading...</p>
-                    </div>
-                </div>
+                <Loading />
             )
             }
             {!loading && (
@@ -83,7 +78,7 @@ const HomePage = () => {
                             </div>
                             <div className="relative w-auto">
                                 {filteredMovies.length !== 0 ?
-                                    <div className="grid grid-cols-7 gap-6">
+                                    <div className="grid lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-4 grid-cols-4 gap-6">
                                         {
                                             filteredMovies.map(movie => (
                                                 <div className="w-auto relative" key={movie.id}>

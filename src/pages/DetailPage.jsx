@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import api from "../services/api";
 import MovieDetail from "../components/MovieDetail";
 import MovieItemContent from "../components/MovieItemContent";
-import {AiOutlineLoading} from "react-icons/ai";
 import { useSelector } from "react-redux";
+import Loading from "../components/Loading";
 
 const DetailPage = () => {
     const { id } = useParams();
@@ -18,6 +18,7 @@ const DetailPage = () => {
             await api.getMovie(id)
                 .then(response => {
                     setMovie(response.data)
+                    console.log(response.data);
                 })
                 .catch(error => {
                     alert(error)
@@ -38,12 +39,7 @@ const DetailPage = () => {
     return (
         <>   
             {loading && (
-               <div className={`relative h-screen w-screen ${theme === 'dark' ? `bg-gray-800 text-white` : `bg-white text-black`} `}>
-               <div className="absolute top-60 left-1/2 text-center">
-                   <AiOutlineLoading className="animate-spin w-20 h-20" />
-                   <p className="text-xl">Loading...</p>
-               </div>
-           </div>
+              <Loading />
             )
             }
             {!loading && (

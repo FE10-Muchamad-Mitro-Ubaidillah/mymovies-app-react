@@ -43,8 +43,8 @@ const MovieItemContent = ({ poster_path, title, overview, vote_average, id, favo
                 <button className={`w-full mt-2 font-semibold ${favorited ? `bg-gray-600 text-red-700 hover:bg-gray-700 hover:text-red-900` : `bg-red-700 hover:bg-red-800 text-white`} justify-center border-none p-0.5 rounded flex content-center`} 
                 onClick={favorited ? () =>  onRemoveFavorite() : () => onFavorite({movie})}
                 >
-                    <BsFillHeartFill className="my-3 mr-3 text-2xl" /> 
-                    <span className="my-2 text-base text-white">Favorite</span>
+                    <BsFillHeartFill className="my-3 mr-1 text-2xl" /> 
+                    <span className="my-2 text-base text-white">{favorited ? `Remove Favorite` : `Add Favorite`}</span>
                 </button>
             </div>
         </div>

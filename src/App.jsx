@@ -25,15 +25,15 @@ const App = () => {
     }
 
     return (
-        <div className={`${theme === `dark` ? `bg-gray-800` : `bg-white`} h-full w-full`}>
-            {cookie.name === 'undefined' ?
+        <div className={`${theme === `dark` ? `bg-gray-800` : `bg-white`} max-w-screen`}>
+            {/* {cookie.name === 'undefined' ?
                 (
                     <MovieNavbar toggleTheme={() => dispatch(changeTheme())} />
                 ) :
                 (
                     <MovieNavbar toggleTheme={() => dispatch(changeTheme())} name={cookie.name} onLogout={() => onLogoutHandler()} cookie={cookie.name} />
                 )
-            }
+            } */}
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/detail/:id" element={<DetailPage />} />
