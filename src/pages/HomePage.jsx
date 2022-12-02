@@ -59,7 +59,7 @@ const HomePage = () => {
                         {
                             movies.map(movie => (
                                 <div className="carousel-item relative w-full" key={movie.id} id={slide_index++}>
-                                    <MovieHero {...movie} />
+                                    <MovieHero {...movie} id={movie.id} movie={movie}/>
                                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                                         <a href={`#${next - 2}`} className="btn btn-circle text-base">❮</a>
                                         <a href={`#${next++}`} className="btn btn-circle text-base">❯</a>
@@ -86,6 +86,7 @@ const HomePage = () => {
                                                         favorited={false}
                                                         {...movie}
                                                         movie={movie}
+                                                        id={movie.id}
                                                     />
                                                 </div>
                                             ))

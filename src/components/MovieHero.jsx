@@ -1,9 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const MovieHero = ({ title, poster_path, overview, id }) => {
+const MovieHero = ({ title, poster_path, overview, id, movie }) => {
     const theme = useSelector((state) => state.theme);
+    const dispatch = useDispatch();
+
+    const onFavorite = ({movie}) => {
+        dispatch(addFavorite(
+            {
+                id: movie.id,
+                title: movie.title,
+                poster_path: movie.poster_path,
+                vote_average: movie.vote_average,
+                overview: movie.overview
+            }
+        ));
+    }
 
     return (
         <div className={`flex lg:flex-row items-center justify-evenly ${theme === `dark` ? `text-gray-200` : `text-gray-800` } lg:py-20 md:py-8`}>
@@ -13,7 +26,8 @@ const MovieHero = ({ title, poster_path, overview, id }) => {
             <div className="w-2/5">
                 <Link to={`detail/${id}`}><h1 className="text-4xl font-bold">{title}</h1></Link>
                 <p className="py-6">{overview}</p>
-                <button className={`btn border-white border-2 bg-transparent ${theme === `dark` ? `text-white hover:bg-white hover:text-black` : `text-gray-800 border-gray-800 hover:bg-gray-800 hover:text-white` } mr-4`}>+ Add to Favorite</button>
+                <button className={`btn border-white border-2 bg-transparent ${theme === `dark` ? `text-white hover:bg-white hover:text-black` : `text-gray-800 border-gray-800 hover:bg-gray-800 hover:text-white` } mr-4`}
+                onClick={() => onFavorite({movie})}>+ Add to Favorite</button>
                 <button className={`btn bg-red-600 border-none hover:bg-red-700`}>Play Film</button>
             </div>
         </div>

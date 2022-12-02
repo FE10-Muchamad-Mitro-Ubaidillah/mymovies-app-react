@@ -16,7 +16,7 @@ const FavoritePage = () => {
                             {
                                 stateFavorite.map(item => (
                                     <div className="w-auto relative">
-                                        <MovieItemContent {...item} favorited={true}/>
+                                        <MovieItemContent {...item} id={item.id} favorited={true}/>
                                     </div>
                                 ))
                             }

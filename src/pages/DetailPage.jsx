@@ -44,14 +44,14 @@ const DetailPage = () => {
             }
             {!loading && (
                 <>
-                    <MovieDetail key={id} {...movie} />
+                    <MovieDetail key={id} {...movie}  movie={movie}/>
                     <div className="m-14">
                         <h2 className={`text-3xl ${theme === `dark` ? `text-white` : `text-black`} mb-5 font-semibold`}>Similar Movies</h2>
                         <div className="relative w-auto">
                             <div className="grid grid-cols-7 gap-6">
                                 {similarMovies.map(movie => (
                                     <div className="w-auto relative" key={movie.id}>
-                                        <MovieItemContent {...movie} />
+                                        <MovieItemContent {...movie} movie={movie} id={movie.id}/>
                                     </div>
                                 ))}
                             </div>
